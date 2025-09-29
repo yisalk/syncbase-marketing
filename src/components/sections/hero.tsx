@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Check, CheckCircle, XCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLocation } from "wouter";
 
 export default function Hero() {
+  const [, setLocation] = useLocation();
+  
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-slate-50 dark:bg-slate-900">
       {/* Grid Background Pattern */}
@@ -66,11 +69,18 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Button className="bg-orange-500 hover:bg-orange-600 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl">
-              Request Early Access
+            <Button 
+              onClick={() => setLocation("/pricing")}
+              className="bg-orange-500 hover:bg-orange-600 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              Get Free License
             </Button>
-            <Button variant="outline" className="border-slate-600 hover:border-blue-500 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:bg-charcoal">
-              See How It Works
+            <Button 
+              onClick={() => setLocation("/pricing")}
+              variant="outline" 
+              className="border-slate-600 hover:border-blue-500 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:bg-charcoal"
+            >
+              View Pricing
             </Button>
           </motion.div>
         </motion.div>

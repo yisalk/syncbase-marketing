@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 
 const quickLinks = [
   { label: "Problem", href: "#problem" },
@@ -19,6 +20,8 @@ const resources = [
 ];
 
 export default function Footer() {
+  const [, setLocation] = useLocation();
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId.replace('#', ''));
     if (element) {
@@ -47,13 +50,24 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <Button className="bg-orange-500 hover:bg-orange-600 px-6 py-3 font-semibold transition-all duration-300">
+            <Button 
+              onClick={() => setLocation("/pricing")}
+              className="bg-orange-500 hover:bg-orange-600 px-6 py-3 font-semibold transition-all duration-300"
+            >
               Get Syncbase - $300/Year
             </Button>
-            <Button variant="outline" className="border-slate-600 hover:border-blue-500 px-6 py-3 font-semibold transition-all duration-300">
+            <Button 
+              onClick={() => setLocation("/contact")}
+              variant="outline" 
+              className="border-slate-600 hover:border-blue-500 px-6 py-3 font-semibold transition-all duration-300"
+            >
               Schedule a Chat
             </Button>
-            <Button variant="ghost" className="text-blue-500 hover:text-blue-400 px-6 py-3 font-semibold transition-all duration-300">
+            <Button 
+              onClick={() => setLocation("/contact")}
+              variant="ghost" 
+              className="text-blue-500 hover:text-blue-400 px-6 py-3 font-semibold transition-all duration-300"
+            >
               Ask Us Anything
             </Button>
           </motion.div>

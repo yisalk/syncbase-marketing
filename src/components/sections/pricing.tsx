@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 
 const features = [
   "Unlimited data sources",
@@ -20,6 +21,8 @@ const secondaryOptions = [
 ];
 
 export default function Pricing() {
+  const [, setLocation] = useLocation();
+  
   return (
     <section id="pricing" className="py-20 bg-slate-100 dark:bg-charcoal">
       <div className="max-w-7xl mx-auto px-6">
@@ -90,8 +93,11 @@ export default function Pricing() {
               transition={{ duration: 0.5, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              <Button className="w-full bg-orange-500 hover:bg-orange-600 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105">
-                Get Syncbase - $300/Year
+              <Button 
+                onClick={() => setLocation("/pricing")}
+                className="w-full bg-orange-500 hover:bg-orange-600 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
+              >
+                View All Plans
               </Button>
               <div className="flex justify-center space-x-6 text-sm">
                 {secondaryOptions.map((option, index) => (
