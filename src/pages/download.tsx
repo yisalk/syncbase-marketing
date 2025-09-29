@@ -56,19 +56,27 @@ export default function DownloadPage() {
   const [downloadStarted, setDownloadStarted] = useState(false);
 
   const handleDownload = async () => {
-    setDownloading(true);
-    
-    // Simulate download process
-    setTimeout(() => {
+    try {
+      setDownloading(true);
       setDownloadStarted(true);
-      setDownloading(false);
-      
-      // In a real app, this would trigger the actual download
-      // For now, we'll just show success
+
+      const MSI_URL = "https://testaccountsyncbase1.blob.core.windows.net/syncbaseinstaller/SyncBaseMSI.msi";
+
+      const anchor = document.createElement("a");
+      anchor.href = MSI_URL;
+      anchor.target = "_blank";
+      anchor.rel = "noopener";
+      anchor.download = "";
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+
+    } finally {
       setTimeout(() => {
+        setDownloading(false);
         setDownloadStarted(false);
-      }, 3000);
-    }, 2000);
+      }, 1500);
+    }
   };
 
   return (
@@ -156,14 +164,14 @@ export default function DownloadPage() {
                     ) : (
                       <>
                         <Download className="mr-2 h-5 w-5" />
-                        Download SyncBase
+                        Download Syncbase
                       </>
                     )}
                   </Button>
                 )}
 
                 <div className="text-center text-sm text-slate-600 dark:text-slate-400">
-                  <p>File size: ~150 MB</p>
+                  <p>File size: ~280 MB</p>
                   <p>Download time: ~2-5 minutes (depending on connection)</p>
                 </div>
               </CardContent>
